@@ -1,12 +1,9 @@
 import React from 'react';
 import DeleteConfirmation from './components/DeleteConfirmation';
+import Modal from './components/Modal';
 
 function App() {
-  return (
-    <div>
-      <DeleteConfirmation />
-    </div>
-  );
+  return <></>;
 }
 
 export default App;
