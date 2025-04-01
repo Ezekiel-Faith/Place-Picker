@@ -3,6 +3,7 @@ import DeleteConfirmation from './components/DeleteConfirmation';
 import Modal from './components/Modal';
 import Places from './components/Places';
 import { AVAILABLE_PLACES } from './data';
+import { sortPlacesByDistance } from './loc';
 
 import logoImg from './assets/logo.png';
 
@@ -10,6 +11,14 @@ function App() {
   const modal = useRef();
   const selectedPlace = useRef();
   const [pickedPlaces, setPickedPlaces] = useState([]);
+
+  navigator.geolocation.getCurrentPosition((position) => {
+    const sortedPlaces = sortPlacesByDistance(
+      AVAILABLE_PLACES,
+      position.coords.latitude,
+      position.coords.longitude
+    );
+  });
 
   function handleStartRemovePlace(id) {
     modal.current.open();
