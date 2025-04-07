@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import DeleteConfirmation from './components/DeleteConfirmation';
 import Modal from './components/Modal';
 import Places from './components/Places';
@@ -57,7 +57,7 @@ function App() {
     }
   }
 
-  function handleRemovePlace() {
+  const handleRemovePlace = useCallback(function handleRemovePlace() {
     setPickedPlaces((prevPickedPlaces) =>
       prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
     );
@@ -68,7 +68,7 @@ function App() {
       'selectedPlaces',
       JSON.stringify(storedIDS.filter((id) => id !== selectedPlace.current))
     );
-  }
+  }, []);
 
   return (
     <>
